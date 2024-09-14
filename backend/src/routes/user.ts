@@ -64,6 +64,7 @@ userRouter.post('/signin', async (c) => {
         c.status(411);
         return c.json({
             error: "Bad Inputs",
+            body: body,
         })
     }
 
