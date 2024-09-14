@@ -6,6 +6,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@kaviaryamaan/blog-common": "^1.0.0",
     "@prisma/client": "^5.19.1",
     "@prisma/extension-accelerate": "^1.1.0",
     "hono": "^4.6.1",
