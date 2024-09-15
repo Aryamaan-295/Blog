@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 export default function Blog() {
     const { id } = useParams();
     const { loading, blog } = useBlog({
-        id: Number(id)
+        id: id || ""
     });
 
     if(loading) {
@@ -15,8 +15,6 @@ export default function Blog() {
             </>
         )
     }
-
-    console.log(blog)
 
     return (
         <div>

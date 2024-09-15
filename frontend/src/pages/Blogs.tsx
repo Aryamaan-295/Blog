@@ -1,4 +1,5 @@
 import BlogCard from "../components/BlogCard";
+import BlogSkeleton from "../components/BlogSkeleton";
 import { useBlogs } from "../hooks";
 
 export default function Blogs() {
@@ -7,17 +8,22 @@ export default function Blogs() {
     if (loading) {
         return(
             <div>
-                Loader
+                <BlogSkeleton />
+                <BlogSkeleton />
+                <BlogSkeleton />
+                <BlogSkeleton />
+                <BlogSkeleton />
+                <BlogSkeleton />
             </div>
         )
     }
 
     return (
         <div className="flex flex-col items-center">
-            <div className="max-w-xl">
+            <div className="max-w-2xl">
                 {blogs.map(blog => 
                     <BlogCard 
-                    authorName={blog.author.name}
+                    author={blog.author}
                     title={blog.title}
                     content={blog.content}
                     updatedDate={blog.updatedDate}

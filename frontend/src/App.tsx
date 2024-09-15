@@ -3,8 +3,11 @@ import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import Blog from './pages/Blog';
 import Blogs from './pages/Blogs';
-import './App.css'
+import Profile from './pages/Profile';
+import WriteBlog from './pages/WriteBlog'
 import AppBar from './components/AppBar';
+import './App.css'
+
 
 function MainLayout() {
   return(
@@ -28,6 +31,8 @@ function App() {
           <Route element={ <MainLayout />}>
             <Route path="/blogs" element={ <Blogs/> } />
             <Route path="/blog/:id" element={ <Blog/> } />
+            <Route path="/profile/:id" element={ <Profile />} />
+            <Route path="/edit" element={ <WriteBlog />} />
           </Route>
         </Routes>
       </BrowserRouter>

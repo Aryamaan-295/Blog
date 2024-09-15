@@ -21,7 +21,7 @@ export default function BlogView({ blog }: {blog: Blog}) {
                     <div className="font-bold text-md text-gray-500 mb-2">
                         Author
                     </div>
-                    <Link to={`/user/${blog.author.id}`} className="flex h-fit rounded-lg px-2 cursor-pointer hover:bg-slate-100">
+                    <Link to={`/profile/${blog.author.id}`} className="flex h-fit rounded-lg p-2 cursor-pointer hover:bg-slate-100">
                         <div className="flex justify-center items-center w-fit">
                             <Avatar authorName={ blog.author.name } size={8} />
                         </div>

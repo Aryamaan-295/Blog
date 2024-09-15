@@ -5,7 +5,7 @@ import { BACKEND_URL } from "../config";
 const initBlog:Blog = {
     title: "",
     content: "",
-    id: 0,
+    id: "",
     author: {
         name: "",
         id: "",
@@ -16,7 +16,7 @@ const initBlog:Blog = {
 export interface Blog {
     title: string,
     content: string,
-    id: number,
+    id: string,
     author: {
         name: string,
         id: string,
@@ -24,7 +24,7 @@ export interface Blog {
     updatedDate: string,
 }
 
-export function useBlog({id}: {id:number}) {
+export function useBlog({id}: {id:string}) {
     const [loading, setLoading] = useState(true);
     const [blog, setBlog] = useState<Blog>(initBlog);
     const token = localStorage.getItem("token")
