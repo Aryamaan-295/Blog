@@ -1,22 +1,36 @@
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom"
+import ProfileView from "../components/ProfileView";
+import { useUser } from "../hooks";
+import ProfileSkeleton from "../components/ProfileSkeleton";
 
-export default function Profile() {
+function Profile() {
     const {id} = useParams();
     const token = localStorage.getItem("token")
-    const user = jwtDecode<{id: string}>(token as string);
+    const info = jwtDecode<{id: string}>(token as string);
+    const { loading, user } = useUser({
+        id: id || ""
+    })
 
-    if (id == user.id) {
+    if (loading) {
         return (
-            <div>
-                This is my profile Ary1 !!
-            </div>
+            <>
+                <ProfileSkeleton />
+            </>
         )
     }
 
     return (
         <div>
-            Profile {id}
+            <ProfileView self={ info.id == id } user={ user }/>
         </div>
+    )
+}
+
+export default function ProfileWrapper() {
+    const { id } = useParams()
+
+    return (
+        <Profile key={id} />
     )
 }

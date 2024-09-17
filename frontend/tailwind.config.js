@@ -9,6 +9,11 @@ export default {
     'w-6',
     'w-8',
     'w-10',
+    'w-20',
+    'text-15',
+    'text-20',
+    'text-25',
+    'text-50',
   ],
   theme: {
     extend: {},

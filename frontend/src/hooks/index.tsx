@@ -2,6 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 
+export interface Blog {
+    title: string,
+    content: string,
+    id: string,
+    author: {
+        name: string,
+        id: string,
+    }
+    updatedDate: string,
+}
+
 const initBlog:Blog = {
     title: "",
     content: "",
@@ -13,15 +24,93 @@ const initBlog:Blog = {
     updatedDate: ""
 }
 
-export interface Blog {
-    title: string,
-    content: string,
+export interface User {
+    name: string,
     id: string,
-    author: {
-        name: string,
-        id: string,
-    }
-    updatedDate: string,
+    posts: Blog[],
+}
+
+const initUser:User = {
+    name: "Aryamaan Kavi",
+    id: "asdkfj;adslkfja;sdlf",
+    posts: [{
+        title: "wow",
+        content: "wow again",
+        id: "asdlkfja;sldkfj",
+        author: {
+            name: "Aryamaan Kavi",
+            id: "asd;lksfja;slkdj",
+        },
+        updatedDate: "22-09-2005",
+    },{
+        title: "wow",
+        content: "wow again",
+        id: "asdlkfja;sldkfj",
+        author: {
+            name: "Aryamaan Kavi",
+            id: "asd;lksfja;slkdj",
+        },
+        updatedDate: "22-09-2005",
+    },{
+        title: "wow",
+        content: "wow again",
+        id: "asdlkfja;sldkfj",
+        author: {
+            name: "Aryamaan Kavi",
+            id: "asd;lksfja;slkdj",
+        },
+        updatedDate: "22-09-2005",
+    },{
+        title: "wow",
+        content: "wow again",
+        id: "asdlkfja;sldkfj",
+        author: {
+            name: "Aryamaan Kavi",
+            id: "asd;lksfja;slkdj",
+        },
+        updatedDate: "22-09-2005",
+    },{
+        title: "wow",
+        content: "wow again",
+        id: "asdlkfja;sldkfj",
+        author: {
+            name: "Aryamaan Kavi",
+            id: "asd;lksfja;slkdj",
+        },
+        updatedDate: "22-09-2005",
+    },{
+        title: "wow",
+        content: "wow again",
+        id: "asdlkfja;sldkfj",
+        author: {
+            name: "Aryamaan Kavi",
+            id: "asd;lksfja;slkdj",
+        },
+        updatedDate: "22-09-2005",
+    }]
+}
+
+export function useUser({ id }: {id:string}) {
+    const [loading,setLoading] = useState(true);
+    const [user, setUser] = useState<User>(initUser);
+    const token = localStorage.getItem("token")
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/user/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            setUser(response.data.user);
+            setLoading(false);
+        })
+    }, [])
+    
+    return({
+        loading,
+        user,
+    })
 }
 
 export function useBlog({id}: {id:string}) {

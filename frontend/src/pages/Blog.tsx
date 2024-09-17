@@ -1,6 +1,7 @@
 import { useBlog } from "../hooks"
 import BlogView from "../components/BlogView"
 import { useParams } from "react-router-dom";
+import BlogSkeleton from "../components/BlogSkeleton";
 
 export default function Blog() {
     const { id } = useParams();
@@ -11,7 +12,7 @@ export default function Blog() {
     if(loading) {
         return (
             <>
-                Loading........
+                <BlogSkeleton />
             </>
         )
     }

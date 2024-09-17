@@ -1,5 +1,5 @@
 import BlogCard from "../components/BlogCard";
-import BlogSkeleton from "../components/BlogSkeleton";
+import BlogCardSkeleton from "../components/BlogCardSkeleton";
 import { useBlogs } from "../hooks";
 
 export default function Blogs() {
@@ -8,12 +8,12 @@ export default function Blogs() {
     if (loading) {
         return(
             <div>
-                <BlogSkeleton />
-                <BlogSkeleton />
-                <BlogSkeleton />
-                <BlogSkeleton />
-                <BlogSkeleton />
-                <BlogSkeleton />
+                <BlogCardSkeleton />
+                <BlogCardSkeleton />
+                <BlogCardSkeleton />
+                <BlogCardSkeleton />
+                <BlogCardSkeleton />
+                <BlogCardSkeleton />
             </div>
         )
     }

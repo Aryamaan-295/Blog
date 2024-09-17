@@ -8,8 +8,10 @@ export default function WriteBlog() {
     const token = localStorage.getItem('token')
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    async function sendRequest(title:string, content:string) {
+    async function sendRequest() {
+        setLoading(true);
         const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
             title,
             content,
@@ -19,6 +21,7 @@ export default function WriteBlog() {
             }
         })
         const id = response.data.id;
+        setLoading(false);
         navigate(`/blog/${id}`)
     }
 
@@ -29,16 +32,26 @@ export default function WriteBlog() {
                     onChange={(e) => {
                         setTitle(e.target.value)
                     }}
+                    required={true}
                 />
                 <textarea name="content" id="content" placeholder="Tell your story..." rows={15} className="text-3xl focus:outline-none resize-none font-light placeholder:font-light" 
                     onChange={(e) => {
                         setContent(e.target.value)
                     }}
+                    required={true}
                 />
             </div>
             <div>
-                <button onClick={() => sendRequest(title, content)} className="px-4 py-2 border rounded-full text-white bg-blue-600 hover:bg-blue-500">
-                    Publish
+                <button disabled={loading} onClick={() => {
+                    if (title != '' && content != '') {
+                        sendRequest()
+                    } else {
+                        alert("Title and Content required")
+                    }
+                }} className="px-4 py-2 border rounded-full text-white bg-blue-600 hover:bg-blue-500">
+                    {!loading ? "Publish" : <>
+                        <svg className="animate-spin mx-[17px] my-[2px] h-5 w-5 border-2 border-white rounded-full border-b-0 border-r-0" viewBox="0 0 24 24" />
+                    </>}
                 </button>
             </div>
         </div>

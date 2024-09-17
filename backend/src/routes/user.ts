@@ -90,3 +90,33 @@ userRouter.post('/signin', async (c) => {
     }
 
 })
+
+
+userRouter.get("/:id", async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const id = c.req.param("id");
+
+    try{
+        const user = await prisma.user.findFirst({
+            where:{
+                id: id,
+            },
+            select: {
+                name: true,
+                id: true,
+                posts: true,
+            }
+        })
+
+        return c.json({
+            user
+        })
+    } 
+    catch(e) {
+        c.status(403)
+        c.json({error: "Error while fetching profile"})
+    }
+})

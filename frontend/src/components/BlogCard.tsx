@@ -36,7 +36,7 @@ export default function BlogCard({
                     </div>
                 </div>
             </div>
-            <hr className="border-gray-400 w-4/5 h-[1px]" />
+            <hr className="border-gray-200 w-4/5 h-[1px]" />
         </div>
         </Link>
     )

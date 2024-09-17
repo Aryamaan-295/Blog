@@ -1,26 +1,42 @@
 export default function BlogSkeleton() {
     return (
-        <div role="status" className="w-screen animate-pulse flex flex-col justify-center items-center">
-            <div className="w-max-2xl flex flex-col justify-center items-center">
-                <div className="py-5 px-8 flex flex-col w-full justify-center items-center">
-                    <div className="w-max-screen-2xl">
-                        <div className="mb-2 flex">
-                            <div className="w-6 aspect-square bg-gray-200 rounded-full "></div>
-                            <span className="pl-2 flex items-center">
-                                <div className="bg-gray-200 rounded-full w-8 h-4"></div>
-                                <b className="text-gray-200"> • </b>
-                                <div className="bg-gray-200 rounded-full w-8 h-4"></div>
-                            </span>
-                        </div>
-                        <div className="h-6 bg-gray-200 rounded-full mb-6 w-[500px]"></div>
-                        <div className="h-2 bg-gray-200 rounded-full mb-4 w-[500px]"></div>
-                        <div className="h-2 bg-gray-200 rounded-full mb-4 w-[500px]"></div>
-                        <div className="h-2 bg-gray-200 rounded-full mb-6 w-[500px]"></div>
-                        <div className="h-4 bg-gray-200 rounded-full ml-2 w-10"></div>
+        <div role="status" className="w-screen animate-pulse">
+            <div className="grid grid-cols-12 px-16 pt-14 w-full">
+                <div className="col-start-1 col-end-9">
+                    <div className="mb-2">
+                        <div className="bg-gray-200 rounded-lg w-2/3 h-10"></div>
+                    </div>
+                    <div className="mb-4 ml-3">
+                        <div className="bg-gray-200 rounded-lg w-20 h-5"></div>
+                    </div>
+                    <div className="px-2 mt-5">
+                        <div className="h-5 bg-gray-200 rounded-full mb-5 w-2/3"></div>
+                        <div className="h-5 bg-gray-200 rounded-full mb-5 w-2/3"></div>
+                        <div className="h-5 bg-gray-200 rounded-full mb-5 w-2/3"></div>
+                        <div className="h-5 bg-gray-200 rounded-full mb-5 w-2/3"></div>
                     </div>
                 </div>
-                <hr className="border-gray-400 w-4/5 h-[1px]" />
+                <div className="col-start-9 col-end-13 px-10 border-l border-gray-400">
+                    <div className="relative top-20 border rounded-lg p-4">
+                        <div className="font-bold text-md text-gray-500 mb-2">
+                            Author
+                        </div>
+                        <div className="flex">
+                            <div className="flex justify-center items-center w-fit">
+                                <div className="w-8 aspect-square bg-gray-200 rounded-full "></div>
+                            </div>
+                            <div className="pl-4 flex-1">
+                                <div className="my-2">
+                                    <div className="bg-gray-200 rounded-full w-8 h-4"></div>
+                                </div>
+                                <div className="mt-3">
+                                    <div className="h-2 bg-gray-200 rounded-full mb-4 w-1/3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
-} 
+}
