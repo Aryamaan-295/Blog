@@ -12,7 +12,7 @@ function MenuItem({ logo, item, link, setOpen }: {
 }) {
 
     return (
-        <Link to={ link } className="flex flex-row m-3 p-2 rounded-lg items-center opacity-60 hover:opacity-100 hover:bg-gray-100" 
+        <Link to={ link } className="flex flex-row m-3 p-2 rounded-md items-center opacity-60 hover:opacity-100 hover:bg-gray-100" 
         onClick={() => {
             setOpen(false);
             if (link == "/signin") {

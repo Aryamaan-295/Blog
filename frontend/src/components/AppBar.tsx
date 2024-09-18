@@ -3,7 +3,7 @@ import Avatar from "./Avatar";
 import write from "../assets/write-icon.svg";
 import search from "../assets/search-icon.svg"
 import { jwtDecode } from "jwt-decode";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Menu from "./Menu";
 
 export default function AppBar() {
@@ -12,6 +12,24 @@ export default function AppBar() {
     const token = localStorage.getItem("token");
     const user = jwtDecode<{id: string}>(token as string);
     const [open, setOpen] = useState(false);
+
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    function handleOutsideClick(event: any) {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setOpen(false);
+        };
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('scroll', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+            document.removeEventListener('scroll', handleOutsideClick);
+        };
+    },[])
 
     return (
         <div className="border-b border-gray-200 w-screen h-[1px] flex justify-between items-center px-10 py-7 bg-white">
@@ -41,7 +59,9 @@ export default function AppBar() {
                     <Avatar authorName="ary" size={8} hover={true} />
                 </button>
                 {open && <>
-                    <Menu user={ user } setOpen={ setOpen } />
+                    <div ref={ menuRef }>
+                        <Menu user={ user } setOpen={ setOpen } />
+                    </div>
                 </>}
             </div>
         </div>

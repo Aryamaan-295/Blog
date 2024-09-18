@@ -13,9 +13,9 @@ export default function BlogCardSkeleton() {
                             </span>
                         </div>
                         <div className="h-6 bg-gray-200 rounded-lg mb-6 w-[500px]"></div>
-                        <div className="h-2 bg-gray-200 rounded-full mb-4 w-[500px]"></div>
-                        <div className="h-2 bg-gray-200 rounded-full mb-4 w-[500px]"></div>
-                        <div className="h-2 bg-gray-200 rounded-full mb-6 w-[500px]"></div>
+                        <div className="h-3 bg-gray-200 rounded-full mb-4 w-[500px]"></div>
+                        <div className="h-3 bg-gray-200 rounded-full mb-4 w-[500px]"></div>
+                        <div className="h-3 bg-gray-200 rounded-full mb-6 w-[500px]"></div>
                         <div className="h-4 bg-gray-200 rounded-full ml-2 w-16"></div>
                     </div>
                 </div>

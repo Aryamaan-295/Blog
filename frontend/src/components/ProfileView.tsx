@@ -38,7 +38,8 @@ export default function ProfileView({ self=false, user }: {
                         33K followers
                     </div>
                     {!self ? <>
-                        <button className="border bg-green-600 font-light text-sm text-white px-4 py-2 rounded-full hover:bg-green-700">
+                        <button className="border bg-green-600 font-light text-sm text-white px-4 py-2 rounded-full hover:bg-green-700"
+                            onClick={() => console.log("Followed")}>
                             Follow
                         </button>
                     </> : <>
@@ -49,6 +50,5 @@ export default function ProfileView({ self=false, user }: {
                 </div>
             </div>
         </div>
-
     )
 }

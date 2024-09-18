@@ -26,68 +26,16 @@ const initBlog:Blog = {
 
 export interface User {
     name: string,
+    email: string,
     id: string,
     posts: Blog[],
 }
 
 const initUser:User = {
-    name: "Aryamaan Kavi",
-    id: "asdkfj;adslkfja;sdlf",
-    posts: [{
-        title: "wow",
-        content: "wow again",
-        id: "asdlkfja;sldkfj",
-        author: {
-            name: "Aryamaan Kavi",
-            id: "asd;lksfja;slkdj",
-        },
-        updatedDate: "22-09-2005",
-    },{
-        title: "wow",
-        content: "wow again",
-        id: "asdlkfja;sldkfj",
-        author: {
-            name: "Aryamaan Kavi",
-            id: "asd;lksfja;slkdj",
-        },
-        updatedDate: "22-09-2005",
-    },{
-        title: "wow",
-        content: "wow again",
-        id: "asdlkfja;sldkfj",
-        author: {
-            name: "Aryamaan Kavi",
-            id: "asd;lksfja;slkdj",
-        },
-        updatedDate: "22-09-2005",
-    },{
-        title: "wow",
-        content: "wow again",
-        id: "asdlkfja;sldkfj",
-        author: {
-            name: "Aryamaan Kavi",
-            id: "asd;lksfja;slkdj",
-        },
-        updatedDate: "22-09-2005",
-    },{
-        title: "wow",
-        content: "wow again",
-        id: "asdlkfja;sldkfj",
-        author: {
-            name: "Aryamaan Kavi",
-            id: "asd;lksfja;slkdj",
-        },
-        updatedDate: "22-09-2005",
-    },{
-        title: "wow",
-        content: "wow again",
-        id: "asdlkfja;sldkfj",
-        author: {
-            name: "Aryamaan Kavi",
-            id: "asd;lksfja;slkdj",
-        },
-        updatedDate: "22-09-2005",
-    }]
+    name: "",
+    email: "",
+    id: "",
+    posts: []
 }
 
 export function useUser({ id }: {id:string}) {

@@ -18,8 +18,8 @@ blogRouter.use('/*', async (c, next) => {
     const authHeader = c.req.header("Authorization") || "";
 
     if (!authHeader) {
-    c.status(401);
-    return c.json({error: "Unauthorized"});
+        c.status(401);
+        return c.json({error: "Unauthorized"});
     }
 
     const token = authHeader.split(" ")[1];
