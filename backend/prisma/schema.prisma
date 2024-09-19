@@ -19,6 +19,8 @@ model User {
   name      String?
   password  String
   posts     Blog[]
+  following Connection[] @relation("Following")
+  followers Connection[] @relation("Followers")
 }
 
 model Blog {
@@ -29,4 +31,16 @@ model Blog {
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
   updatedDate DateTime @default(now())
+}
+
+model Connection {
+  id        Int    @id @default(autoincrement())
+  followerId String   
+  followingId String
+  followedTime DateTime @default(now())
+
+  follower User @relation("Following", fields: [followerId], references: [id])
+  following User @relation("Followers", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
 }

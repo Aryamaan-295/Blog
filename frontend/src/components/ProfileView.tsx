@@ -2,11 +2,39 @@ import { Link } from "react-router-dom"
 import { User } from "../hooks"
 import Avatar from "./Avatar"
 import BlogCard from "./BlogCard"
+import axios from "axios"
+import { BACKEND_URL } from "../config"
+import { useState } from "react"
 
 export default function ProfileView({ self=false, user }: {
     self?: boolean,
     user: User
 }) {
+    const token = localStorage.getItem("token");
+    const [followerCount, setFollowerCount] = useState<number>(user.followerCount);
+
+    const [isFollowing, setIsFollowing] = useState<boolean>(user.isFollowing);
+
+    async function handleFollow() {
+        const response = await axios.post(`${BACKEND_URL}/api/v1/user/follow/${user.id}`,{}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        setFollowerCount(followerCount+1);
+        setIsFollowing(true);
+    }
+
+    async function handleUnfollow() {
+        const response = await axios.delete(`${BACKEND_URL}/api/v1/user/unfollow/${user.id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        setFollowerCount(followerCount-1);
+        setIsFollowing(false);
+    }
+
     return (
         <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-9 pt-16 pl-40">
@@ -34,14 +62,26 @@ export default function ProfileView({ self=false, user }: {
                     <div className="font-normal my-2 text-lg">
                         { user.name }
                     </div>
-                    <div className="font-light mb-4 text-md text-gray-500">
-                        33K followers
+                    <div className="flex">
+                        <div className="font-light mb-4 text-md text-gray-500 mr-4">
+                            { followerCount } followers
+                        </div>
+                        <div className="font-light mb-4 text-md text-gray-500">
+                            { user.followingCount } following
+                        </div>
                     </div>
                     {!self ? <>
-                        <button className="border bg-green-600 font-light text-sm text-white px-4 py-2 rounded-full hover:bg-green-700"
-                            onClick={() => console.log("Followed")}>
-                            Follow
-                        </button>
+                        {isFollowing ? <>
+                            <button className="border border-green-600 bg-white font-light text-sm text-green-600 px-4 py-2 rounded-full hover:bg-gray-100"
+                                onClick={handleUnfollow}>
+                                Unfollow
+                            </button>
+                        </> : <>
+                            <button className="border border-green-600 bg-green-600 font-light text-sm text-white px-4 py-2 rounded-full hover:bg-green-700"
+                                onClick={handleFollow}>
+                                Follow
+                            </button>
+                        </>}
                     </> : <>
                         <Link to={"/profile/settings"} className="text-green-600 font-light text-sm pl-1 hover:underline">
                             Edit Profile

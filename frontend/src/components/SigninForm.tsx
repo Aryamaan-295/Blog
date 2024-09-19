@@ -14,7 +14,7 @@ export default function SigninForm() {
 
     async function sendRequest() {
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, formData);
+            const response = await axios.post(`${BACKEND_URL}/api/v1/sign/signin`, formData);
             const jwt = response.data.jwt;
             localStorage.setItem("token", jwt);
             navigate("/blogs");

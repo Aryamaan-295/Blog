@@ -29,13 +29,19 @@ export interface User {
     email: string,
     id: string,
     posts: Blog[],
+    followerCount: number,
+    followingCount: number, 
+    isFollowing: boolean,
 }
 
 const initUser:User = {
     name: "",
     email: "",
     id: "",
-    posts: []
+    posts: [],
+    followerCount: 0,
+    followingCount: 0,
+    isFollowing: false,
 }
 
 export function useUser({ id }: {id:string}) {
