@@ -33,7 +33,7 @@ export default function SignupForm() {
             </div>
             <div className="text-gray-400">
                 Already have an account?
-                <Link to={"/signin"} className="pl-1 underline underline-offset-2 hover:text-blue-800 hover:cursor-pointer">Login</Link>
+                <Link to={""} className="pl-1 underline underline-offset-2 hover:text-blue-800 hover:cursor-pointer">Login</Link>
             </div>
             <div className="mt-4 flex flex-col justify-center items-center">
                 <LabelledInput label="Username" placeholder="johndoe" onChange={(e) => {
