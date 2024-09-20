@@ -26,7 +26,7 @@ function ProtectedRoutes() {
 
   if(!token) {
     return(
-      <Navigate to={""} />
+      <Navigate to={"/"} />
     )
   }
 
