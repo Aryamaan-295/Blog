@@ -12,7 +12,7 @@ export default function BlogView({ blog }: {blog: Blog}) {
                 <div className="text-md font-light text-gray-600 mb-4 ml-3">
                     {`Published on ${blog.updatedDate.substring(0,10)}`}
                 </div>
-                <div className="text-md px-2 ">
+                <div className="text-md pl-2 pr-6 ">
                     { blog.content }
                 </div>
             </div>

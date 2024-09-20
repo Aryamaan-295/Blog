@@ -5,12 +5,16 @@ import search from "../assets/search-icon.svg"
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
 import Menu from "./Menu";
+import axios from "axios";
+import { useUser } from "../hooks";
+import { BACKEND_URL } from "../config";
 
 export default function AppBar() {
     const route = useLocation();
     const page = route.pathname.split('/')[1];
     const token = localStorage.getItem("token");
     const user = jwtDecode<{id: string}>(token as string);
+    const [username, setUsername] = useState<string>();
     const [open, setOpen] = useState(false);
 
     const menuRef = useRef<HTMLDivElement>(null);
@@ -30,6 +34,17 @@ export default function AppBar() {
             document.removeEventListener('scroll', handleOutsideClick);
         };
     },[])
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/user/${user.id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            setUsername(response.data.user.name);
+        })
+    }, [token])
 
     return (
         <div className="border-b border-gray-200 w-screen h-[1px] flex justify-between items-center px-10 py-7 bg-white">
@@ -56,7 +71,7 @@ export default function AppBar() {
                     </div>
                 </>}
                 <button onClick={() => setOpen(!open)} className="ml-4 w-fit h-fit rounded-full">
-                    <Avatar authorName="ary" size={8} hover={true} />
+                    <Avatar authorName={ username } size={8} hover={true} />
                 </button>
                 {open && <>
                     <div ref={ menuRef }>

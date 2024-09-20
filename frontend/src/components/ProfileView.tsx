@@ -62,6 +62,9 @@ export default function ProfileView({ self=false, user }: {
                     <div className="font-normal my-2 text-lg">
                         { user.name }
                     </div>
+                    <div className="font-light mb-2 text-md text-gray-500">
+                        { user.bio }
+                    </div>
                     <div className="flex">
                         <div className="font-light mb-4 text-md text-gray-500 mr-4">
                             { followerCount } followers

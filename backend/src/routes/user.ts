@@ -1,9 +1,7 @@
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { Hono } from 'hono';
-import { sign, verify } from 'hono/jwt';
-import { signupInput } from '@kaviaryamaan/blog-common';
-import { signinInput } from '@kaviaryamaan/blog-common';
+import { verify } from 'hono/jwt';
 import { updateUserInput } from '@kaviaryamaan/blog-common';
 
 
@@ -66,6 +64,7 @@ userRouter.get("/:id", async (c) => {
                 email: true,
                 id: true,
                 posts: true,
+                bio: true,
             }
         })
 
@@ -135,12 +134,13 @@ userRouter.post("/update", async(c) => {
                 name: body.name,
                 email: body.email,
                 password: body.password,
+                bio: body.bio
             }
         })
 
         return c.json({
             message: "Updated Details!",
-            name: user.name,
+            bio: user.bio,
         })
     }
     catch(e) {

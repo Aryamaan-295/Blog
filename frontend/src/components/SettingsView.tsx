@@ -14,7 +14,7 @@ export default function SettingsView() {
     const [sending, setSending] = useState(false);
     const [formData, setFormData] = useState<UpdateUserInput>({})
 
-    const isFormValid = !!formData.name || !!formData.email || !!formData.password;
+    const isFormValid = !!formData.name || !!formData.email || !!formData.password || !!formData.bio;
 
     const { loading, user } = useUser({
         id: info.id
@@ -48,6 +48,10 @@ export default function SettingsView() {
                     <div className="pt-7 mr-8 flex font-light text-base justify-between">
                         <div className="h-7 bg-gray-200 rounded-lg w-40"></div>
                         <div className="h-7 bg-gray-200 rounded-lg w-32 mr-5"></div>
+                    </div>
+                    <div className="pt-7 mr-8 flex font-light text-base justify-between">
+                        <div className="h-7 bg-gray-200 rounded-lg w-40"></div>
+                        <div className="h-7 bg-gray-200 rounded-lg w-24 mr-5"></div>
                     </div>
                     <div className="pt-7 mr-8 flex font-light text-base justify-between">
                         <div className="h-7 bg-gray-200 rounded-lg w-40"></div>
@@ -106,6 +110,18 @@ export default function SettingsView() {
                         onChange={(e) => setFormData(c => ({
                             ...c,
                             password: e.target.value,
+                        }))} />
+                    </div>
+                </div>
+                <div className="pt-7 mr-8 flex font-light text-base justify-between">
+                    <label htmlFor="bio" className="flex-1 cursor-pointer">
+                        Bio
+                    </label>
+                    <div>
+                        <textarea id="bio" placeholder={"Bio here..."} value={formData.bio || ""} className="resize-none focus:outline-none w-52 h-7 focus:border-b focus:border-gray-200"
+                        onChange={(e) => setFormData(c => ({
+                            ...c,
+                            bio: e.target.value,
                         }))} />
                     </div>
                 </div>

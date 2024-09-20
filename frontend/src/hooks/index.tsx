@@ -27,6 +27,7 @@ const initBlog:Blog = {
 export interface User {
     name: string,
     email: string,
+    bio: "",
     id: string,
     posts: Blog[],
     followerCount: number,
@@ -37,6 +38,7 @@ export interface User {
 const initUser:User = {
     name: "",
     email: "",
+    bio: "",
     id: "",
     posts: [],
     followerCount: 0,
