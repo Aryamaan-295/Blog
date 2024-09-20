@@ -22,7 +22,7 @@ export default function SettingsView() {
 
     async function sendRequest() {
         setSending(true);
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/update`,formData, {
+        await axios.post(`${BACKEND_URL}/api/v1/user/update`,formData, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

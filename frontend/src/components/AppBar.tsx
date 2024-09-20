@@ -6,7 +6,6 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
 import Menu from "./Menu";
 import axios from "axios";
-import { useUser } from "../hooks";
 import { BACKEND_URL } from "../config";
 
 export default function AppBar() {

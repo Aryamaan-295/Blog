@@ -16,7 +16,7 @@ export default function ProfileView({ self=false, user }: {
     const [isFollowing, setIsFollowing] = useState<boolean>(user.isFollowing);
 
     async function handleFollow() {
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/follow/${user.id}`,{}, {
+        await axios.post(`${BACKEND_URL}/api/v1/user/follow/${user.id}`,{}, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -26,7 +26,7 @@ export default function ProfileView({ self=false, user }: {
     }
 
     async function handleUnfollow() {
-        const response = await axios.delete(`${BACKEND_URL}/api/v1/user/unfollow/${user.id}`, {
+        await axios.delete(`${BACKEND_URL}/api/v1/user/unfollow/${user.id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
