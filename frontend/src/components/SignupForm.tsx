@@ -27,7 +27,7 @@ export default function SignupForm() {
     }
 
     return (
-        <div className="flex justify-center items-center flex-col h-screen px-28">
+        <div className="flex justify-center items-center flex-col h-screen sm:px-28">
             <div className="font-bold text-3xl">
                 Create an Account
             </div>

@@ -26,7 +26,7 @@ export default function SigninForm() {
     }
 
     return (
-        <div className="flex justify-center items-center flex-col h-screen px-28">
+        <div className="flex justify-center items-center flex-col h-screen sm:px-28">
             <div className="font-bold text-3xl">
                 Login
             </div>

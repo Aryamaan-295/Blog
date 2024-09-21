@@ -46,12 +46,12 @@ export default function AppBar() {
     }, [token])
 
     return (
-        <div className="border-b border-gray-200 w-screen h-[1px] flex justify-between items-center px-10 py-7 bg-white">
+        <div className="border-b border-gray-200 w-screen h-[1px] flex justify-between items-center px-8 sm:px-10 py-7 bg-white">
             <div className="flex justify-center items-center">
                 <Link to={"/blogs"} className="font-semibold text-2xl cursor-pointer">
                     Medium
                 </Link>
-                <div className="flex ml-4 bg-gray-100 px-2 py-1 rounded-full justify-center items-center">
+                <div className="ml-4 bg-gray-100 px-2 py-1 rounded-full justify-center items-center hidden sm:flex">
                     <div className="opacity-50">
                         <img src={ search } alt="" className="h-7" />
                     </div>
@@ -59,6 +59,9 @@ export default function AppBar() {
                 </div>
             </div>
             <div className="flex justify-center items-center">
+                <button disabled className="block mx-1 px-1 py-1 opacity-60 border border-gray-300 rounded-full sm:hidden">
+                    <img src={ search } alt="" />
+                </button>
                 {!(page == "edit") && <>
                     <div>
                         <Link to={'/edit'}>
