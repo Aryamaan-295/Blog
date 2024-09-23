@@ -19,8 +19,8 @@ export default function Blogs() {
     }
 
     return (
-        <div className="flex flex-col items-center">
-            <div className="max-w-2xl pt-5 mx-6">
+        <div className="flex flex-col items-center pt-5 px-6">
+            <div className="w-full box-border sm:max-w-2xl">
                 {blogs.map(blog => 
                     <BlogCard 
                     author={blog.author}

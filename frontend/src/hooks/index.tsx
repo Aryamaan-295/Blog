@@ -13,7 +13,7 @@ export interface Blog {
     updatedDate: string,
 }
 
-const initBlog:Blog = {
+export const initBlog:Blog = {
     title: "",
     content: "",
     id: "",

@@ -12,7 +12,7 @@ export default function BlogCard({
 }: Blog) {
     return (
         <Link to={`/blog/${id}`}>
-            <div className="w-full flex flex-col justify-center items-center rounded-xl hover:cursor-pointer hover:bg-gray-100">
+            <div className="w-full flex flex-col justify-center items-center rounded-xl transition-colors hover:cursor-pointer hover:bg-gray-100">
             <div className="py-5 px-8 flex flex-col w-full">
                 <div>
                     <div className="text-gray-600 mb-2">

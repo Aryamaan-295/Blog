@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import Menu from "./Menu";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import SearchMenu from "./SearchMenu";
+import { Blog, initBlog } from "../hooks";
 
 export default function AppBar() {
     const route = useLocation();
@@ -15,18 +17,42 @@ export default function AppBar() {
     const user = jwtDecode<{id: string}>(token as string);
     const [username, setUsername] = useState<string>();
     const [open, setOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [queryParam, setQueryParam] = useState<string>("");
+    const [results, setResults] = useState<Blog[] | undefined>()
 
     const menuRef = useRef<HTMLDivElement>(null);
+    const searchRef = useRef<HTMLDivElement>(null)
 
     function handleOutsideClick(event: any) {
         if (menuRef.current && !menuRef.current.contains(event.target)) {
             setOpen(false);
         };
+
+        if (searchRef.current && !searchRef.current.contains(event.target)) {
+            setSearchOpen(false);
+        }
+    }
+
+    async function handleSearch(query: string) {
+        setQueryParam(query);
+
+        const results = await axios.post(`${BACKEND_URL}/api/v1/blog/search`,{}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            params: {
+                t: queryParam,
+            }
+        })
+
+        setResults(results.data.results);
     }
 
     useEffect(() => {
         document.addEventListener('mousedown', handleOutsideClick);
         document.addEventListener('scroll', handleOutsideClick);
+        setQueryParam("")
 
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
@@ -46,7 +72,7 @@ export default function AppBar() {
     }, [token])
 
     return (
-        <div className="border-b border-gray-200 w-screen h-[1px] flex justify-between items-center px-8 sm:px-10 py-7 bg-white">
+        <div className="border-b border-gray-200 w-full h-[1px] flex justify-between items-center px-8 sm:px-10 py-7 bg-white">
             <div className="flex justify-center items-center">
                 <Link to={"/blogs"} className="font-semibold text-2xl cursor-pointer">
                     Medium
@@ -55,7 +81,16 @@ export default function AppBar() {
                     <div className="opacity-50">
                         <img src={ search } alt="" className="h-7" />
                     </div>
-                    <input type="text" placeholder="Search" className="h-8 w-36 bg-gray-100 mr-1 text-md font-light text-opacity-50 placeholder:text-black placeholder:opacity-50 placeholder:font-light focus:outline-none" />
+                    <input type="text" value={ queryParam } placeholder="Search" className="h-8 w-36 bg-gray-100 mr-1 text-md font-light text-opacity-50 placeholder:text-black placeholder:opacity-50 placeholder:font-light focus:outline-none" 
+                    onChange={(e) => {
+                        setSearchOpen(true);
+                        handleSearch(e.target.value);
+                    }}/>
+                    {searchOpen && <>
+                        <div ref={ searchRef }>
+                            <SearchMenu results={ results || [initBlog] } setSearchOpen={ setSearchOpen } />
+                        </div>
+                    </>}
                 </div>
             </div>
             <div className="flex justify-center items-center">

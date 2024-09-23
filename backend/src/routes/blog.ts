@@ -70,7 +70,6 @@ blogRouter.post('/', async (c) => {
     catch(e) {
         c.status(403);
         c.text("Error")
-        console.log(e)
     }
 })
 
@@ -165,5 +164,46 @@ blogRouter.get('/:id', async (c) => {
     catch(e) {
         c.status(403);
         c.json({error: "Error while fetching data"})
+    }
+})
+
+blogRouter.post('/search', async(c) => {
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    const query = c.req.query('t');
+
+    try {
+        const results = await prisma.blog.findMany({
+            where: {
+                title: {
+                    contains: query
+                },
+            },
+            select: {
+                title: true,
+                content: true,
+                id: true,
+                author: {
+                    select:{
+                        name: true,
+                        id: true,
+                    }
+                },
+                updatedDate: true,
+            }
+        });
+
+        return c.json({
+            results
+        })
+    }
+    catch(e) {
+        c.status(403);
+        c.json({
+            error: "Error while searching",
+        })
     }
 })

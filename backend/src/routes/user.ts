@@ -188,8 +188,6 @@ userRouter.delete("/unfollow/:followingId", async(c) => {
             }
         })
 
-        console.log(followerEntry);
-
         if (!followerEntry) {
             c.status(400)
             return c.json({error: "You don't follow this person."})

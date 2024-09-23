@@ -32,7 +32,7 @@ export default function Menu({ user, setOpen }: {
     setOpen: Dispatch<SetStateAction<boolean>>,
 }) {
     return (
-        <div className="absolute w-60 top-14 right-6 border-[1px] border-gray-200 shadow-md drop-shadow-md z-10 bg-opacity-100 ">
+        <div className="absolute w-60 top-14 right-6 border-[1px] border-gray-200 shadow-md drop-shadow-md z-10 bg-white bg-opacity-100 ">
             <MenuItem logo={<img src={ profile } alt="" className="w-7 aspect-square" />} item="Profile" link={`/profile/${user.id}`} setOpen={ setOpen }/>
             <MenuItem logo={<img src={ settings } alt="" className="w-7 aspect-square" />} item="Settings" link={`/profile/settings`} setOpen={ setOpen }/>
             <MenuItem logo={<img src={ signout } alt="" className="w-7 aspect-square" />} item="Sign out" link={``} setOpen={ setOpen }/>

@@ -145,7 +145,6 @@ export default function SettingsView() {
                     <div className="w-fit">
                         <button disabled={loading} onClick={() => {
                             if (isFormValid) {
-                                console.log(formData)
                                 sendRequest()
                             } else {
                                 alert("Required")
